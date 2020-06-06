@@ -1,6 +1,11 @@
 require './lib/enigma'
+require './lib/date'
 
-handle = File.open(ARGV[0], "r")
+message = File.open(ARGV[0])
+
+enigma = Enigma.new
+key = 
+date =
 
 incoming_text = handle.read
 
