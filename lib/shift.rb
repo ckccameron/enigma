@@ -55,7 +55,7 @@ class Shift
           end
           altered_text << @alphabet[index_num]
         end
-      if letter_number == 1
+      elsif letter_number == 1
         index_num = @alphabet.find_index(letter) + shift["B"]
         if index_num < 27
           altered_text << @alphabet[index_num]
@@ -65,8 +65,32 @@ class Shift
           end
           altered_text << @alphabet[index_num]
         end
+      elsif letter_number == 2
+        index_num = @alphabet.find_index(letter) + shift["C"]
+        if index_num < 27
+          altered_text << @alphabet[index_num]
+        else
+          until index_num < 27
+            index_num -= 27
+          end
+          altered_text << @alphabet[index_num]
+        end
+      elsif letter_number == 3
+        index_num = @alphabet.find_index(letter) + shift["D"]
+        if index_num < 27
+          altered_text << @alphabet[index_num]
+        else
+          until index_num < 27
+            index_num -= 27
+          end
+          altered_text << @alphabet[index_num]
+        end
       end
+      letter_number += 1
     end
+    new_text = new_text.to_h do |letter|
+      [new_text.find_index(letter), letter]
+    end
+    altered_text.join
   end
-end
 end
