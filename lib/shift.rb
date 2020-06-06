@@ -5,7 +5,8 @@ class Shift
   def initialize(rand_num, date)
     @rand_num = rand_num
     @date = date
-    @alphabet = Alphabet.start
+    @alphabet = ("a".."z").to_a << " "
+    # Alphabet.start
   end
 
   def keys
@@ -37,9 +38,35 @@ class Shift
   end
 
   def encrypt(message)
-    alphabet = Hash.new
-    @alphabet.each do |letter, index|
-      
+    # alphabet = Hash.new
+    # @alphabet.each do |letter, index|
+
+    message_split = message.split(//)
+    altered_text = []
+    letter_number = 0
+    message_split.each do |letter|
+      if letter_number == 0
+        index_num = @alphabet.find_index(letter) + shift["A"]
+        if index_num < 27
+          altered_text << @alphabet[index_num]
+        else
+          until index_num < 27
+            index_num -= 27
+          end
+          altered_text << @alphabet[index_num]
+        end
+      if letter_number == 1
+        index_num = @alphabet.find_index(letter) + shift["B"]
+        if index_num < 27
+          altered_text << @alphabet[index_num]
+        else
+          until index_num < 27
+            index_num -= 27
+          end
+          altered_text << @alphabet[index_num]
+        end
+      end
     end
   end
+end
 end
