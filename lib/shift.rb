@@ -16,4 +16,14 @@ class Shift
     generated_keys["D"] = @rand_num[3..4].to_i
     generated_keys
   end
+
+  def offsets
+    generated_offsets = {}
+    date_squared = (@date.to_i * @date.to_i).to_s
+    generated_offsets["A"] = date_squared[-4].to_i
+    generated_offsets["B"] = date_squared[-3].to_i
+    generated_offsets["C"] = date_squared[-2].to_i
+    generated_offsets["D"] = date_squared[-1].to_i
+    generated_offsets 
+  end
 end
