@@ -59,13 +59,13 @@ class Shift
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
-      if letter_number == 0
+      if letter_number == 0 || letter_number.modulo(4) == 0
         altered_text << shift_rotate("A")[alphabet_with_indexes[letter]]
-      elsif letter_number == 1
+      elsif letter_number == 1 || letter_number.modulo(4) == 1
         altered_text << shift_rotate("B")[alphabet_with_indexes[letter]]
-      elsif letter_number == 2
+      elsif letter_number == 2 || letter_number.modulo(4) == 2
         altered_text << shift_rotate("C")[alphabet_with_indexes[letter]]
-      elsif letter_number == 3
+      elsif letter_number == 3 || letter_number.modulo(4) == 3
         altered_text << shift_rotate("D")[alphabet_with_indexes[letter]]
       else
         altered_text << letter
@@ -74,11 +74,6 @@ class Shift
     end
     altered_text.join
   end
-
-
-
-
-
 
     # we gotta rotate this/use the rotate method to get past the four letter
     # chunk we stuck on...based on shift?
