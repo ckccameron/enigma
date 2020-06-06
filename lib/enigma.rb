@@ -1,10 +1,32 @@
-class Enigma
+require './lib/shift'
+require 'date'
 
-  def encrypt(message, key, date)
-    #hash with 3 keys - all strings
+class Enigma
+  attr_reader :message,
+              :key,
+              :date,
+              :shift
+
+  def initialize(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
+    @message = message
+    @key = key
+    @date = date
+    @shift = Shift.new(@key, @date)
   end
 
-  def decrypt(ciphertext, key, date)
-    #hash with 3 keys - all strings
+  def encrypt
+    encryption_hash = Hash.new
+    encryption_hash[:encryption] = @shift.encrypt(@message)
+    encryption_hash[:key] = @key
+    encryption_hash[:date] = @date
+    encryption_hash
+  end
+
+  def decrypt
+    decryption_hash = Hash.new
+    decryption_hash[:decryption] = @shift.decrypt(@message)
+    decryption_hash[:key] = @key
+    decryption_hash[:date] = @date
+    decryption_hash
   end
 end
