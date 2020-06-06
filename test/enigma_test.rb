@@ -18,6 +18,13 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Shift, enigma.shift
   end
 
+  def test_it_has_today_set_as_default_date
+    enigma = Enigma.new("hello world", "02715")
+
+    assert_equal 6, enigma.date.length
+    assert_equal "20", enigma.date[-2..-1]
+  end
+
   def test_it_can_encrypt
     enigma = Enigma.new("hello world", "02715", "040895")
 
