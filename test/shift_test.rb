@@ -40,6 +40,30 @@ class ShiftTest < Minitest::Test
     assert_equal expected, shift.shift
   end
 
+  def test_it_can_make_hash_with_letters_as_keys_and_indexes_as_values
+    shift = Shift.new("02715", "040895")
+
+    expected = {"a" => 0, "b" => 1, "c" => 2, "d" => 3, "e" => 4, "f" => 5,
+      "g" => 6, "h" => 7, "i" => 8, "j" => 9, "k" => 10, "l" => 11, "m" =>12,
+      "n" => 13, "o" => 14, "p" => 15, "q" => 16, "r" => 17, "s" => 18,
+      "t" => 19, "u" => 20, "v" => 21, "w" => 22, "x" => 23, "y" => 24,
+      "z" => 25, " " => 26}
+
+    assert_equal expected, shift.alphabet_with_indexes
+  end
+
+  def test_it_can_rotate_the_letter_shift_and_provide_letter_index
+    shift = Shift.new("02715", "040895")
+
+    expected = {0 => "t", 1 => "u", 2 => "v",  3=> "w", 4 => "x", 5 => "y",
+      6 => "z",  7=> " ", 8 => "a", 9 => "b", 10 => "c", 11 => "d", 12 => "e",
+      13 => "f", 14 => "g", 15 => "h", 16 => "i", 17 => "j", 18 => "k",
+      19 => "l", 20 => "m", 21 => "n", 22 => "o", 23 => "p", 24 => "q",
+      25 => "r", 26 => "s"}
+
+    assert_equal expected, shift.shift_rotate("C")
+  end
+
   def test_it_can_encrypt_message
     shift = Shift.new("02715", "040895")
 

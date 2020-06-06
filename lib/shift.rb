@@ -37,60 +37,104 @@ class Shift
     generated_shift
   end
 
-  def encrypt(message)
-    # alphabet = Hash.new
-    # @alphabet.each do |letter, index|
+  def alphabet_with_indexes
+    letter_to_index = Hash.new
+    @alphabet.each_with_index do |letter, index|
+      letter_to_index[letter] = index
+    end
+    letter_to_index
+  end
 
+
+  def shift_rotate(letter)
+    rotations = Hash.new
+    @alphabet.rotate(shift[letter]).each_with_index do |letter, index|
+      rotations[letter] = index
+    end
+    rotations.invert
+  end
+
+  def encrypt(message)
     message_split = message.split(//)
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
       if letter_number == 0
-        index_num = @alphabet.find_index(letter) + shift["A"]
-        if index_num < 27
-          altered_text << @alphabet[index_num]
-        else
-          until index_num < 27
-            index_num -= 27
-          end
-          altered_text << @alphabet[index_num]
-        end
+        altered_text << shift_rotate("A")[alphabet_with_indexes[letter]]
       elsif letter_number == 1
-        index_num = @alphabet.find_index(letter) + shift["B"]
-        if index_num < 27
-          altered_text << @alphabet[index_num]
-        else
-          until index_num < 27
-            index_num -= 27
-          end
-          altered_text << @alphabet[index_num]
-        end
+        altered_text << shift_rotate("B")[alphabet_with_indexes[letter]]
       elsif letter_number == 2
-        index_num = @alphabet.find_index(letter) + shift["C"]
-        if index_num < 27
-          altered_text << @alphabet[index_num]
-        else
-          until index_num < 27
-            index_num -= 27
-          end
-          altered_text << @alphabet[index_num]
-        end
+        altered_text << shift_rotate("C")[alphabet_with_indexes[letter]]
       elsif letter_number == 3
-        index_num = @alphabet.find_index(letter) + shift["D"]
-        if index_num < 27
-          altered_text << @alphabet[index_num]
-        else
-          until index_num < 27
-            index_num -= 27
-          end
-          altered_text << @alphabet[index_num]
-        end
+        altered_text << shift_rotate("D")[alphabet_with_indexes[letter]]
+      else
+        altered_text << letter
       end
       letter_number += 1
     end
-    new_text = new_text.to_h do |letter|
-      [new_text.find_index(letter), letter]
-    end
     altered_text.join
   end
+
+
+
+
+
+
+    # we gotta rotate this/use the rotate method to get past the four letter
+    # chunk we stuck on...based on shift?
+
+    # alphabet = Hash.new
+    # @alphabet.each do |letter, index|
+
+  #   message_split = message.split(//)
+  #   altered_text = []
+  #   letter_number = 0
+  #   message_split.each do |letter|
+  #     if letter_number == 0
+  #       index_num = @alphabet.find_index(letter) + shift["A"]
+  #       if index_num < 27
+  #         altered_text << @alphabet[index_num]
+  #       else
+  #         until index_num < 27
+  #           index_num -= 27
+  #         end
+  #         altered_text << @alphabet[index_num]
+  #       end
+  #     elsif letter_number == 1
+  #       index_num = @alphabet.find_index(letter) + shift["B"]
+  #       if index_num < 27
+  #         altered_text << @alphabet[index_num]
+  #       else
+  #         until index_num < 27
+  #           index_num -= 27
+  #         end
+  #         altered_text << @alphabet[index_num]
+  #       end
+  #     elsif letter_number == 2
+  #       index_num = @alphabet.find_index(letter) + shift["C"]
+  #       if index_num < 27
+  #         altered_text << @alphabet[index_num]
+  #       else
+  #         until index_num < 27
+  #           index_num -= 27
+  #         end
+  #         altered_text << @alphabet[index_num]
+  #       end
+  #     elsif letter_number == 3
+  #       index_num = @alphabet.find_index(letter) + shift["D"]
+  #       if index_num < 27
+  #         altered_text << @alphabet[index_num]
+  #       else
+  #         until index_num < 27
+  #           index_num -= 27
+  #         end
+  #         altered_text << @alphabet[index_num]
+  #       end
+  #     end
+  #     letter_number += 1
+  #   end
+  #   new_text = new_text.to_h do |letter|
+  #     [new_text.find_index(letter), letter]
+  #   end
+  #   altered_text.join
 end
