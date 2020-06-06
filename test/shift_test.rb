@@ -1,5 +1,4 @@
 require_relative './test_helper'
-require './lib/alphabet'
 require './lib/shift'
 
 class ShiftTest < Minitest::Test

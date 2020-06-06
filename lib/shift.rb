@@ -6,7 +6,6 @@ class Shift
     @rand_num = rand_num
     @date = date
     @alphabet = ("a".."z").to_a << " "
-    # Alphabet.start
   end
 
   def keys
