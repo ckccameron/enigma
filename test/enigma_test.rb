@@ -25,6 +25,12 @@ class EnigmaTest < Minitest::Test
     assert_equal "20", enigma.date[-2..-1]
   end
 
+  def test_it_has_random_key_as_default
+    enigma = Enigma.new("hello world")
+
+    assert_equal 5, enigma.key.length
+  end
+
   def test_it_can_encrypt
     enigma = Enigma.new("hello world", "02715", "040895")
 
