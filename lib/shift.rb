@@ -24,6 +24,15 @@ class Shift
     generated_offsets["B"] = date_squared[-3].to_i
     generated_offsets["C"] = date_squared[-2].to_i
     generated_offsets["D"] = date_squared[-1].to_i
-    generated_offsets 
+    generated_offsets
+  end
+
+  def shift
+    generated_shift = {}
+    generated_shift["A"] = keys["A"] + offsets["A"]
+    generated_shift["B"] = keys["B"] + offsets["B"]
+    generated_shift["C"] = keys["C"] + offsets["C"]
+    generated_shift["D"] = keys["D"] + offsets["D"]
+    generated_shift
   end
 end

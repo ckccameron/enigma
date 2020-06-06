@@ -31,4 +31,12 @@ class ShiftTest < Minitest::Test
 
     assert_equal expected, shift.offsets
   end
+
+  def test_it_can_create_shift
+    shift = Shift.new("02715", "040895")
+
+    expected = {"A" => 3, "B" => 27, "C" => 73, "D" => 20}
+
+    assert_equal expected, shift.shift
+  end
 end
