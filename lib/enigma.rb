@@ -23,6 +23,10 @@ class Enigma
   end
 
   def decrypt
-
+    decryption_hash = Hash.new
+    decryption_hash[:decryption] = @shift.decrypt(@message)
+    decryption_hash[:key] = @key
+    decryption_hash[:date] = @date
+    decryption_hash
   end
 end
