@@ -15,4 +15,12 @@ class ShiftTest < Minitest::Test
     assert_equal "02715", shift.rand_num
     assert_equal "040895", shift.date
   end
+
+  def test_it_can_create_keys
+    shift = Shift.new("02715", "040895")
+
+    expected = {"A" => 02, "B" => 27, "C" => 71, "D" => 15}
+
+    assert_equal expected, shift.keys
+  end
 end
