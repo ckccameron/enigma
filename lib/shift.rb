@@ -35,4 +35,11 @@ class Shift
     generated_shift["D"] = keys["D"] + offsets["D"]
     generated_shift
   end
+
+  def encrypt(message)
+    alphabet = Hash.new
+    @alphabet.each do |letter, index|
+      
+    end
+  end
 end

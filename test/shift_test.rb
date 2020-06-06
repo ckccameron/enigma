@@ -39,4 +39,10 @@ class ShiftTest < Minitest::Test
 
     assert_equal expected, shift.shift
   end
+
+  def test_it_can_encrypt_message
+    shift = Shift.new("02715", "040895")
+
+    assert_equal "keder ohulw", shift.encrypt("hello world")
+  end
 end
