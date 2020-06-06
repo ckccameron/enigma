@@ -52,7 +52,7 @@ class ShiftTest < Minitest::Test
     assert_equal expected, shift.alphabet_with_indexes
   end
 
-  def test_it_can_rotate_the_letter_shift_and_provide_letter_index
+  def test_it_can_rotate_the_letter_shift_and_provide_indexes
     shift = Shift.new("02715", "040895")
 
     expected = {0 => "t", 1 => "u", 2 => "v",  3=> "w", 4 => "x", 5 => "y",
@@ -68,5 +68,23 @@ class ShiftTest < Minitest::Test
     shift = Shift.new("02715", "040895")
 
     assert_equal "keder ohulw", shift.encrypt("hello world")
+  end
+
+  def test_it_can_rotate_letter_shift_backwards_and_provide_indexes
+    shift = Shift.new("02715", "040895")
+
+    expected = {0 => "i", 1 => "j", 2 => "k", 3 => "l", 4 => "m", 5 => "n",
+      6 => "o", 7 => "p", 8 => "q", 9 => "r", 10 => "s", 11 => "t", 12 => "u",
+      13 => "v", 14 => "w", 15 => "x", 16 => "y", 17 => "z", 18 => " ",
+      19 => "a", 20 => "b", 21 => "c", 22 => "d", 23 => "e", 24 => "f",
+      25 => "g", 26 => "h"}
+
+    assert_equal expected, shift.shift_rotate_backwards("C")
+  end
+
+  def test_it_can_decrypt_mesaage
+    shift = Shift.new("02715", "040895")
+
+    assert_equal "hello world", shift.decrypt("keder ohulw")
   end
 end
