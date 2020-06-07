@@ -14,7 +14,7 @@ class Enigma
     @shift = Shift.new(@key, @date)
   end
 
-  def encrypt
+  def encrypt(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
     encryption_hash = Hash.new
     encryption_hash[:encryption] = @shift.encrypt(@message)
     encryption_hash[:key] = @key
@@ -22,7 +22,7 @@ class Enigma
     encryption_hash
   end
 
-  def decrypt
+  def decrypt(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
     decryption_hash = Hash.new
     decryption_hash[:decryption] = @shift.decrypt(@message)
     decryption_hash[:key] = @key

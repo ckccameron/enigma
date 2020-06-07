@@ -41,7 +41,7 @@ class EnigmaTest < Minitest::Test
       date: "040895"
     }
 
-    assert_equal expected, enigma.encrypt
+    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
   def test_it_can_decrypt
@@ -54,6 +54,6 @@ class EnigmaTest < Minitest::Test
       date: "040895"
     }
 
-    assert_equal expected, enigma.decrypt
+    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 end
