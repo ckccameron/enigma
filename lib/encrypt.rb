@@ -1,22 +1,21 @@
 require './lib/enigma'
-require './lib/date'
 
-message = File.open(ARGV[0])
-
-enigma = Enigma.new
-key = 
-date =
+handle = File.open(ARGV[0], "r")
 
 incoming_text = handle.read
 
 handle.close
 
-puts "Created 'encrypted.txt' with the key 82648 and date 240818"
+enigma = Enigma.new
+changes = enigma.encrypt(incoming_text)
+encryption = changes[:encryption]
+key = changes[:key]
+date = changes[:date]
 
-text = incoming_text.upcase
+puts "Created 'encrypted.txt' with the key #{key} and date #{date}"
 
 writer = File.open(ARGV[1], "w")
 
-writer.write(text)
+writer.write(encryption)
 
 writer.close
