@@ -1,10 +1,10 @@
 require './test/test_helper'
 require 'date'
 require './lib/enigma'
+require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
   def test_it_exists
-    # enigma = Enigma.new("hello world", "02715", "040895")
     enigma = Enigma.new
 
     assert_instance_of Enigma, enigma
@@ -23,9 +23,8 @@ class EnigmaTest < Minitest::Test
 
     assert_equal 6, enigma.today_date.length
   end
-  
+
   def test_it_can_encrypt
-    # enigma = Enigma.new("hello world", "02715", "040895")
     enigma = Enigma.new
 
     expected =
@@ -39,7 +38,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_decrypt
-    # enigma = Enigma.new("keder ohulw", "02715", "040895")
     enigma = Enigma.new
 
     expected =
@@ -50,5 +48,36 @@ class EnigmaTest < Minitest::Test
     }
 
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
+  def test_it_can_encrypt_without_date_provided
+    enigma = Enigma.new
+
+    mmddyyyy = "060820"
+
+    expected =
+    {
+      encryption: "lib sdmcvpu",
+      key: "02715",
+      date: "060820"
+    }
+    enigma.stubs(:today_date).returns(mmddyyyy)
+    assert_equal expected, enigma.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_decrypt_without_date_provided
+    enigma = Enigma.new
+
+    mmddyyyy = "060820"
+
+    expected =
+    {
+      decryption: "hello world",
+      key: "02715",
+      date: "060820"
+    }
+
+    enigma.stubs(:today_date).returns(mmddyyyy)
+    assert_equal expected, enigma.decrypt("lib sdmcvpu", "02715")
   end
 end
