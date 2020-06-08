@@ -9,7 +9,7 @@ class Shift
   end
 
   def keys
-    generated_keys = {}
+    generated_keys = Hash.new
     generated_keys["A"] = @rand_num[0..1].to_i
     generated_keys["B"] = @rand_num[1..2].to_i
     generated_keys["C"] = @rand_num[2..3].to_i
@@ -18,7 +18,7 @@ class Shift
   end
 
   def offsets
-    generated_offsets = {}
+    generated_offsets = Hash.new
     date_squared = (@date.to_i * @date.to_i).to_s
     generated_offsets["A"] = date_squared[-4].to_i
     generated_offsets["B"] = date_squared[-3].to_i
