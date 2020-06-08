@@ -2,16 +2,24 @@ require './lib/shift'
 require 'date'
 
 class Enigma
-  attr_reader :message,
-              :key,
-              :date,
-              :shift
+  # attr_reader :message,
+  #             :key,
+  #             :date,
+  #             :shift
+  #
+  # def initialize(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
+  #   @message = message
+  #   @key = key
+  #   @date = date
+  #   @shift = Shift.new(@key, @date)
+  # end
 
-  def initialize(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
-    @message = message
-    @key = key
-    @date = date
-    @shift = Shift.new(@key, @date)
+  def rand_key_num
+    rand(100000).to_s.rjust(5, "0")
+  end
+
+  def today_date
+    Date.today.strftime("%m%d%y")
   end
 
   def encrypt(message, key = rand(100000).to_s.rjust(5, "0"), date = Date.today.strftime("%m%d%y"))
