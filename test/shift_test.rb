@@ -86,4 +86,18 @@ class ShiftTest < Minitest::Test
 
     assert_equal "hello world", shift.decrypt("keder ohulw")
   end
+
+  def test_it_can_convert_letters_to_downcase
+    shift = Shift.new("02715", "040895")
+
+    assert_equal "keder ohulw", shift.encrypt("HeLlo WoRld")
+    assert_equal "hello world", shift.decrypt("keDer oHulW")
+  end
+
+  def test_it_does_not_alter_special_characters
+    shift = Shift.new("02715", "040895")
+
+    assert_equal "keder ohulw!?!?", shift.encrypt("hello world!?!?")
+    assert_equal "hello world!?!?", shift.decrypt("keder ohulw!?!?")
+  end
 end

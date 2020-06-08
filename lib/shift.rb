@@ -54,17 +54,17 @@ class Shift
   end
 
   def encrypt(message)
-    message_split = message.split(//)
+    message_split = message.downcase.split(//)
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
-      if letter_number == 0 || letter_number.modulo(4) == 0
+      if (letter_number == 0 || letter_number.modulo(4) == 0) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate("A")[alphabet_with_indexes[letter]]
-      elsif letter_number == 1 || letter_number.modulo(4) == 1
+      elsif (letter_number == 1 || letter_number.modulo(4) == 1) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate("B")[alphabet_with_indexes[letter]]
-      elsif letter_number == 2 || letter_number.modulo(4) == 2
+      elsif (letter_number == 2 || letter_number.modulo(4) == 2) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate("C")[alphabet_with_indexes[letter]]
-      elsif letter_number == 3 || letter_number.modulo(4) == 3
+      elsif (letter_number == 3 || letter_number.modulo(4) == 3) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate("D")[alphabet_with_indexes[letter]]
       else
         altered_text << letter
@@ -83,17 +83,17 @@ class Shift
   end
 
   def decrypt(message)
-    message_split = message.split(//)
+    message_split = message.downcase.split(//)
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
-      if letter_number == 0 || letter_number.modulo(4) == 0
+      if (letter_number == 0 || letter_number.modulo(4) == 0) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate_backwards("A")[alphabet_with_indexes[letter]]
-      elsif letter_number == 1 || letter_number.modulo(4) == 1
+      elsif (letter_number == 1 || letter_number.modulo(4) == 1) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate_backwards("B")[alphabet_with_indexes[letter]]
-      elsif letter_number == 2 || letter_number.modulo(4) == 2
+      elsif (letter_number == 2 || letter_number.modulo(4) == 2) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate_backwards("C")[alphabet_with_indexes[letter]]
-      elsif letter_number == 3 || letter_number.modulo(4) == 3
+      elsif (letter_number == 3 || letter_number.modulo(4) == 3) && alphabet_with_indexes[letter] != nil
         altered_text << shift_rotate_backwards("D")[alphabet_with_indexes[letter]]
       else
         altered_text << letter
