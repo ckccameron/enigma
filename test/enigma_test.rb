@@ -80,4 +80,22 @@ class EnigmaTest < Minitest::Test
     enigma.stubs(:today_date).returns(mmddyyyy)
     assert_equal expected, enigma.decrypt("lib sdmcvpu", "02715")
   end
+
+  def test_it_can_encrypt_without_date_and_key_provided
+    enigma = Enigma.new
+
+    random_key = "21235"
+    mmddyyyy = "060820"
+
+    expected =
+    {
+      encryption: "duhtkpswna ",
+      key: "21235",
+      date: "060820"
+    }
+
+    enigma.stubs(:rand_key_num).returns(random_key)
+    enigma.stubs(:today_date).returns(mmddyyyy)
+    assert_equal expected, enigma.encrypt("hello world")
+  end
 end
