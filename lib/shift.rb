@@ -54,7 +54,7 @@ class Shift
   end
 
   def encrypt(message)
-    message_split = message.split(//)
+    message_split = message.downcase.split(//)
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
@@ -83,7 +83,7 @@ class Shift
   end
 
   def decrypt(message)
-    message_split = message.split(//)
+    message_split = message.downcase.split(//)
     altered_text = []
     letter_number = 0
     message_split.each do |letter|
